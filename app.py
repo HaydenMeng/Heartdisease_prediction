@@ -18,8 +18,12 @@ smoker_status_values = ["Current smoker - now smokes every day", "Current smoker
 age_category_values = ["Age 80 or older", "Age 75 to 79", "Age 70 to 74", "Age 65 to 69", "Age 60 to 64", "Age 55 to 59", "Age 50 to 54", "Age 45 to 49", "Age 40 to 44", "Age 35 to 39","Age 30 to 34","Age 25 to 29","Age 18 to 24",]
 removed_teeth_values = ["1 to 5", "6 or more, but not all", "None of them", "All"]
 # 加载模型
-model = joblib.load("rf_42features_model.pkl")
-feature_columns = joblib.load("rf_42features_columns.pkl")
+# 获取当前脚本所在的目录
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, "rf_42features_model.pkl")
+feature_path = os.path.join(current_dir, "rf_42features_columns.pkl")
+model = joblib.load(model_path)
+feature_columns = joblib.load(feature_path)
 # 定义干预措施
 interventions = {
     "Quit smoking": lambda input_data: {**input_data, "SmokerStatus": "No"},
